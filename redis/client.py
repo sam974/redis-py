@@ -1287,6 +1287,10 @@ class Redis:
             raise DataError("CLIENT PAUSE timeout must be an integer")
         return self.execute_command('CLIENT PAUSE', str(timeout))
 
+    def copy(self, src_key, dest_key):
+        "Copy the source key to the destination key"
+        return self.execute_command('COPY', src_key, dest_key)
+
     def readwrite(self):
         "Disables read queries for a connection to a Redis Cluster slave node"
         return self.execute_command('READWRITE')
